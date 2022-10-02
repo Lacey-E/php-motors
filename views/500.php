@@ -34,8 +34,8 @@
     </div>
     <main>
       
-    <h1>Connection Error</h1>
-
+    <h1>Server Error</h1>
+     <h3 class="phrase">Our server can't connect right now, check back later</h3>
 
     </main>
 
