@@ -45,6 +45,12 @@ background-color: #4697d7;
  
  
  /* ****************footer********************* */
+ .solid-line{
+  border: 1px solid black;
+margin-top: 30px;
+background-color: black;
+width: 100%;
+ }
  
  footer {
    font-family: 'Courier New', Courier, monospace;

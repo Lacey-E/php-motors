@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Php Motors</title>
-    <link rel="stylesheet" href="/php-motors/css/style.css">
-    <link rel="stylesheet" href="/php-motors/css/normalize.css">
+    <link rel="stylesheet" href="/phpmotors/css/style.css">
+    <link rel="stylesheet" href="/phpmotors/css/normalize.css">
 </head>
 
 
@@ -17,7 +17,7 @@
 
         <header>
 
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/php-motors/commons/header.php';
+            <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/commons/header.php';
             ?>
         </header>
 
@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="container-inner">
                     <nav>
-                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/php-motors/commons/nav.php';
+                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/commons/nav.php';
             ?> 
                     </nav>
                 </div>
@@ -53,10 +53,10 @@
 
                 <div class="hero-ph">
                     <picture class="hero-ph">
-                        <source media="(max-width: 500px)" srcset="/php-motors/images/site/car.jpg" />
-                        <source media="(max-width: 900px)" srcset="/php-motors/images/site/car2.jpg" />
-                        <source media="(max-width: 1600px)" srcset="/php-motors/images/delorean.jpg" />
-                        <img src="/php-motors/images/delorean.jpg" alt="halo-image" />
+                        <source media="(max-width: 500px)" srcset="/phpmotors/images/site/car.jpg" />
+                        <source media="(max-width: 900px)" srcset="/phpmotors/images/site/car2.jpg" />
+                        <source media="(max-width: 1600px)" srcset="/phpmotors/images/delorean.jpg" />
+                        <img src="/phpmotors/images/delorean.jpg" alt="halo-image" />
                     </picture>
                 </div>
 
@@ -85,25 +85,25 @@
 
                             <div class="flex-col">
                                 <span class="col-head" id="week1"></span>
-                                <img id="img1" src="/php-motors/images/upgrades/hub-cap.jpg" alt="hub cap" />
+                                <img id="img1" src="/phpmotors/images/upgrades/hub-cap.jpg" alt="hub cap" />
                                 <h3>Hub cap</h3>
                             </div>
 
                             <div class="flex-col">
                                 <span class="col-head" id="week2"></span>
-                                <img id="img2" src="/php-motors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker" />
+                                <img id="img2" src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker" />
                                 <h3>Bumper</h3>
                             </div>
 
                             <div class="flex-col">
                                 <span class="col-head" id="week3"></span>
-                                <img id="img3" src="/php-motors/images/upgrades/flame.jpg" alt="flame" />
+                                <img id="img3" src="/phpmotors/images/upgrades/flame.jpg" alt="flame" />
                                 <h3>Flame</h3>
                             </div>
 
                             <div class="flex-col">
                                 <span class="col-head" id="week4"></span>
-                                <img id="img4" src="/php-motors/images/upgrades/flux-cap.png" alt="flux cap" />
+                                <img id="img4" src="/phpmotors/images/upgrades/flux-cap.png" alt="flux cap" />
                                 <h3>Flux Cap</h3>
                             </div>
 
@@ -128,34 +128,18 @@
 
 
 
+         <div class="solid-line">
 
+         </div>
 
-        </main>
+            <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-        <hr>
-
-
-
-
-
-        <footer>
-            <?php require $_SERVER['DOCUMENT_ROOT'] . '/php-motors/commons/footer.php';?>
-        </footer>
-
-
-
-    </div>
+<footer>
+  <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/commons/footer.php';
+  ?>
+</footer>
+</div>
 </body>
+
 
 </html>

@@ -34,6 +34,7 @@
     </div>
     <main>
       
+    <h1>Connection Error</h1>
 
 
     </main>
