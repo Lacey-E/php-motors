@@ -26,7 +26,7 @@
         <div class="container-inner">
           <nav>
             <?php
-            require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/commons/nav.php';
+            echo $navList;
             ?>
           </nav>
         </div>
