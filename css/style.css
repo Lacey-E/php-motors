@@ -1,6 +1,6 @@
 
 nav{
-    background-color: #272626;
+    background-color: black;
     font-family:'Courier New', Courier, monospace;
 }
 
@@ -98,13 +98,13 @@ width: 100%;
  /* ***************** Header  ****************** */
  
  header {
-   background-color: white;
-   display: flex;
-   justify-content: space-between;
-   padding-left: 2px;
-   padding-right: 2px;
-   color: #8d8d8d;
-   
+  background-color: white;
+  display: flex;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: #8d8d8d;
+  align-content: stretch;
+  justify-content: space-between;
  }
  
  .phrase{
@@ -120,6 +120,11 @@ width: 100%;
  .content {
    padding: 10px;
     background-color:white;
+  margin: auto;
+   max-width: 90%;
+
+   border: 5px solid #4697d7;
+   border-radius: 1%;
  }
  
  body{
@@ -236,10 +241,11 @@ th {
  /* forms */
 
 form fieldset{
-  border: 5px solid black;
-  border-radius: 10px;
+  border: 1px solid black;
+  margin: auto;
+  border-radius: 1px;
   padding: .5rem 2%;
-  max-width: 100%;
+
 }
 
 .otherForm{
@@ -262,7 +268,7 @@ form label.top input, form label.top select {
   padding: .75rem;
   color: #555;
   width: 100%;
-  max-width: 20rem;
+  max-width: 15rem;
   background-color: rgba(0, 0, 0, 0.1);
 
 }
@@ -280,9 +286,9 @@ form .submitBtn {
   color: white;
   border-radius: 1rem;
   padding: .75rem 1.5rem;
-  margin: 0 0 2rem 2%;
+  margin: 0 0 1rem 2%;
   width: 100%;
-  max-width: 20rem;
+  max-width: 15rem;
 }
 
 form label.top input:required{
@@ -415,14 +421,7 @@ td:hover,
   font-family: cursive;
 }
 
-.content {
-  padding: 10px;
-   background-color:white;
-   width: 90%;
-   margin-left: 70px;
-   border: 5px solid #4697d7;
-   border-radius: 1%;
-}
+
 
 form label.sbs {
   padding: .4rem 0;
