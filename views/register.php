@@ -34,6 +34,14 @@
     <main>
     <h1>Register</h1>
 
+    <?php
+if (isset($message)) {
+ echo $message;
+}
+?>
+<form method="post" action="/phpmotors/accounts/index.php">
+
+
 <form method="POST" action="/phpmotors/accounts/index.php">
     <fieldset>
         <legend>Personal Data</legend>
@@ -48,10 +56,10 @@
            </label>
 
   <br>
-
-    <button class="submitBtn">Create Account</button>
-    <!-- Add the action name - value pair
-    <input type="hidden" name="action" value="register"> -->
+      <input type="submit" name="submit" id="regbtn" value="Register">
+    <!-- <button class="submitBtn">Create Account</button> -->
+    <!-- Add the action name - value pair-->
+    <input type="hidden" name="action" value="register"> 
 
     </fieldset>
 </form>
