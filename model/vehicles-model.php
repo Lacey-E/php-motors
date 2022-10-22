@@ -29,16 +29,14 @@ function regCar($classificationName){
 function vehicleRegister($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, 
 $invStock, $invColor, $classificationId){
     // Create a connection object using the phpmotors connection function
- $db = phpmotorsConnect();
+    $db = phpmotorsConnect();
  // The SQL statement
  $sql = 'INSERT INTO inventory (invMake, invModel, invDescription, invImage, invThumbnail, invPrice, 
  invStock, invColor, classificationId)
-     VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail :invPrice, 
+     VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, 
  :invStock, :invColor, :classificationId)';
  // Create the prepared statement using the phpmotors connection
  $stmt = $db->prepare($sql);
- // The next four lines replace the placeholders in the SQL
- // statement with the actual values in the variables
  // and tells the database the type of data it is
  $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
  $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);

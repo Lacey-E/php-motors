@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Template PHP Motors</title>
+    <title> Add Vehicle | PHP Motors</title>
     <link rel="stylesheet" href="/phpmotors/css/normalize.css">
     <link rel="stylesheet" href="/phpmotors/css/style.css">
 
@@ -41,8 +41,7 @@
             ?>
             <h1>Add Vehicle</h1>
             <form method="POST" action="/phpmotors/vehicles/index.php">
-                <fieldset>
-                    <legend>Personal Data</legend>
+             
 
 
                     <h3>Note, all feilds are reqired</h3>
@@ -52,9 +51,8 @@
                    
 
 
-                </fieldset>
-                <label for="carClassification" >Classification</label>
-                    <?php echo $classificationList; ?>
+             
+               
 
                     <label class="top">Car Name<input type="text" name="invMake"> </label>
                     <label class="top">Model <input type="text" name="invModel"></label>
@@ -67,12 +65,15 @@
                     <label class="top">Price<input type="number" name="invPrice"></label>
                     <label class="top">Stock<input type="number" name="invStock"></label>
                     <label class="top">Color<input type="text" name="invColor"></label>
-
-                    
+                        <br>
+                    <label for="carclass" >Car Classification</label>
+                    <?php echo $classificationList; ?>
+                    <br><br>
 
                 <button class="submitBtn">Create Vehicle</button>
                 <!-- Add the action name - value pair -->
                 <input type="hidden" name="action" value="regVehicle">
+           
             </form>
 
 
