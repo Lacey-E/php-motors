@@ -35,13 +35,19 @@
       </div>
     </div>
     <main>
+    <?php
+      if (isset($message)) {
+        echo $message;
+      }
+      ?>
     <form method="post" action="/phpmotors/accounts/index.php">
                 <fieldset>
                     <legend>Log in Data</legend>
 
 
-                    <label class="top">Email* <input type="email" name="clientEmail"> </label>
-                    <label class="top">Password* <input type="password" name="clientPassword" ></label>
+                    <label class="top">Email* <input type="email" name="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?> required> </label>
+                    <label class="top">Password* <input type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+              <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span></label>
 
 
                     
