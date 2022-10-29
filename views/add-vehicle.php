@@ -49,22 +49,26 @@
                    
 
                    
+                    <label class="top">Car Name<input type="text" name="invMake" required <?php if (isset($invMake)) {
+                                                                                                echo "value='$invMake'";
+                                                                                            }  ?>> </label>
+                    <label class="top">Model <input type="text" name="invModel" required <?php if (isset($invModel)) {
+                                                                                            echo "value='$invModel'";
+                                                                                        }  ?>></label>
+                    <label class="top">Description </label><textarea class="top"  name="invDescription" maxlength="30" required<?php if(isset($invDescription)){echo "value='$invDescription'";}?>></textarea>
+                    <span>Not More Than 30 characters</span>
+                    <label class="top">Image<input type="text" value="/phpmotors/images/no-image.png" name="invImage" ></label>
+                    <label class="top">Thumbnail<input type="text" value="/phpmotors/images/no-image.png" name="invThumbnail" ></label>
 
+                    <label class="top">Price<input type="text" name="invPrice" required pattern="\d+(\.\d{2})?" <?php if (isset($invPrice)) {
+                                                                                                                        echo "value='$invPrice'";
+                                                                                                                    }  ?>></label>
+                    <label class="top">Stock<input type="number" required name="invStock" <?php if (isset($invStock)) {
+                                                                                                echo "value='$invStock'";
+                                                                                            }  ?>></label>
+                    <label class="top">Color<input type="text" required name="invColor" <?php if (isset($invColor)) {
+                                                                                            echo "value='$invColor'";}  ?>></label>
 
-             
-               
-
-                    <label class="top">Car Name<input type="text" name="invMake"> </label>
-                    <label class="top">Model <input type="text" name="invModel"></label>
-                    <label class="top">Description <input type="text" name="invDescription"></label>
-
-                    <label class="top">Image<input type="text" value="/phpmotors/images/no-image.png" name="invImage"></label>
-                    <label class="top">Thumbnail<input type="text" value="/phpmotors/images/no-image.png" name="invThumbnail"></label>
-
-
-                    <label class="top">Price<input type="number" name="invPrice"></label>
-                    <label class="top">Stock<input type="number" name="invStock"></label>
-                    <label class="top">Color<input type="text" name="invColor"></label>
                         <br>
                     <label for="carclass" >Car Classification</label>
                     <?php echo $classificationList; ?>

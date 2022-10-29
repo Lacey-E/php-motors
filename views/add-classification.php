@@ -43,7 +43,7 @@ if (isset($message)) {
     <form method="POST" action="/phpmotors/vehicles/index.php">
                 <fieldset>
                     <legend>Vehicle Data</legend>
-                    <label class="top">Vehicle Name<input type="text" name="classificationName"> </label>
+                    <label class="top">Vehicle Name<input type="text" name="classificationName" maxlength="30" required> </label>
 
                 </fieldset>
 
