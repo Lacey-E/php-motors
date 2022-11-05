@@ -3,6 +3,7 @@
 // /* PHPMotors This is the VEHICLES CONTROLLER
 //         */
 
+session_start();
 // Get the database connection file
 require_once '../library/connections.php';
 // Get the PHP Motors accounts model for use as needed
