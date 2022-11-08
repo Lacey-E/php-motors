@@ -58,12 +58,15 @@ if (!$_SESSION['loggedin']) {
 </ul>'
             ?>
            
+           <br>
+           <br>
            
+          
             <?php
                 if ($clientLevel > 1) {
-                    echo ' <span><p>Click Below to acess the Inventory</p>
+                    echo ' <p>Click Below to acess the Inventory</p>
                    <a href="/phpmotors/vehicles/?action=default">
-                    Vehicle Management</a></span>';
+                    Vehicle Management</a>';
                 } ?>
 
            

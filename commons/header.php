@@ -1,6 +1,6 @@
 <img class="logo-img" src="/phpmotors/images/site/logo.png" alt="company logo" >
 <section class="header-title">
-  <a class="phrase" href="/phpmotors/accounts/">
+
   <?php if (isset($_SESSION['loggedin']))  {
                          if (isset($_SESSION['clientData'])) {
                           $clientFirstname = $_SESSION['clientData']['clientFirstname']?>
@@ -22,14 +22,14 @@
     
     
     
-    <span><?php if (isset($_SESSION['loggedin'])) {
+    <h3><?php if (isset($_SESSION['loggedin'])) {
           echo '<a href="/phpmotors/accounts/?action=Logout">
    Log Out</a>';
         } else {
           echo '<a href="/phpmotors/accounts/?action=Login">
   My Account</a>';
         } ?>
-    </span>
+    </h3>
 
     
     
