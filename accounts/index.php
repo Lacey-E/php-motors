@@ -108,13 +108,32 @@ $_SESSION['loggedin'] = TRUE;
 // the array_pop function removes the last
 // element from an array
 array_pop($clientData);
+
+
+
 // Store the array into the session
 $_SESSION['clientData'] = $clientData;
+
 // Send them to the admin view
-include '../view/admin.php';
+include '/xampp/htdocs/phpmotors/views/admin.php';
 exit;
 
 
+case 'admin':
+  include '/xampp/htdocs/phpmotors/views/admin.php';
+  break;
+case 'login':
+  include '../view/login.php';
+  break;
+
+case 'Logout':
+  session_destroy();
+  unset($_SESSION['clientData']);
+  header('Location: /phpmotors/');
+  exit;
+  break;
+
+
   default:
-    include '/xampp/htdocs/phpmotors/views/login.php';
+  include '/xampp/htdocs/phpmotors/views/admin.php';
 }
