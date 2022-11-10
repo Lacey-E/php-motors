@@ -38,7 +38,7 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
     </div>
     <main>
     <h1>Vehicle Management</h1>
-
+   
     <?php
 if (isset($message)) {
  echo $message;
@@ -50,7 +50,27 @@ if (isset($message)) {
        <li> <a href="/phpmotors/vehicles/?action=regVehicle">Add Vehichle</a></li>
 </ul>
 
-    </main>
+<?php
+if (isset($message)) { 
+ echo $message; 
+} 
+if (isset($classificationList)) { 
+ echo '<h2>Vehicles By Classification</h2>'; 
+ echo '<p>Choose a classification to see those vehicles</p>'; 
+ echo $classificationList; 
+}
+?>
+
+<noscript>
+<p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+</noscript>
+
+<br>
+<br>
+<table id="inventoryDisplay"></table>
+    
+
+</main>
 
     <hr>
 
@@ -61,5 +81,5 @@ if (isset($message)) {
     </div>
   </body>
 
-
+<script src="/phpmotors/js/inventory.js"></script>
 </html>
