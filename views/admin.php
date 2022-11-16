@@ -1,9 +1,12 @@
 <?php
 // If the user is not logged in redirect to the login page...
 if (!$_SESSION['loggedin']) {
-    header('Location: /phpmotors/');}?><!DOCTYPE html>
+    header('Location: /phpmotors/');
+} ?>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +38,16 @@ if (!$_SESSION['loggedin']) {
             </div>
         </div>
         <main>
-        <?php
-            if (isset($_SESSION['$message'])) {
+            <?php
+           if (isset($_SESSION['message'])) {
+            $message = $_SESSION['message'];
+           }
+            ?>
+            <?php
+            if (isset($message)) {
                 echo $message;
             }
-            ?>    
+            ?>
             <h1><?php if (isset($_SESSION['clientData'])) {
                     $clientFirstname = $_SESSION['clientData']['clientFirstname'];
                     $clientLastname = $_SESSION['clientData']['clientLastname'];
@@ -51,25 +59,28 @@ if (!$_SESSION['loggedin']) {
             $clientLastname = $_SESSION['clientData']['clientLastname'];
             $clientEmail = $_SESSION['clientData']['clientEmail'];
             $clientLevel = $_SESSION['clientData']['clientLevel'];
-            echo '<ul><li>Client ID: ' . $clientId . '</li>
+            echo '<ul>
 <li>First Name: ' . $clientFirstname . '</li>
 <li>Last Name: ' . $clientLastname . '</li>
 <li>Email: ' . $clientEmail . '</li>
 </ul>'
             ?>
-           
-           <br>
-           <br>
-           
-          
+
+            <br>
+            <br>
+
+
             <?php
-                if ($clientLevel > 1) {
-                    echo ' <p>Click Below to acess the Inventory</p>
+            if ($clientLevel > 1) {
+                echo ' <p>Click Below to acess the Inventory</p>
                    <a href="/phpmotors/vehicles/?action=default">
                     Vehicle Management</a>';
-                } ?>
+            } ?>
 
-           
+            <ul>
+                <li><a href="/phpmotors/accounts/?action=updateAccount">
+                        Update Account</a></li>
+            </ul>
 
 
 

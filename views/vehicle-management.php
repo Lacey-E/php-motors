@@ -2,6 +2,10 @@
 if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
   header('location: /phpmotors/');
   exit;}
+
+  if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+   }
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -39,11 +43,7 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
     <main>
     <h1>Vehicle Management</h1>
    
-    <?php
-if (isset($message)) {
- echo $message;
-}
-?>
+
 
 <ul>
 <li> <a href="/phpmotors/vehicles/?action=classificationName">Add classification</a></li>
@@ -82,4 +82,4 @@ if (isset($classificationList)) {
   </body>
 
 <script src="/phpmotors/js/inventory.js"></script>
-</html>
+</html><?php unset($_SESSION['message']); ?>
