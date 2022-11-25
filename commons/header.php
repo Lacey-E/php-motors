@@ -9,7 +9,7 @@
                        <a href="/phpmotors/accounts/"> Welcome  
                             <?php echo $clientFirstname; }}?>
 
-                       </a>
+                      
 
                        <br>
                        
