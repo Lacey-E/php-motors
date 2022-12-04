@@ -100,7 +100,7 @@ function buildVehiclesDisplay($vehicles){
 
  
 
-  /* * ********************************
+ /* * ********************************
 *  Functions for working with images
 * ********************************* */
 
@@ -113,7 +113,7 @@ function makeThumbnailName($image) {
    return $image;
   }
 
-// Build images display for image management view
+  // Build images display for image management view
 function buildImageDisplay($imageArray) {
    $id = '<ul id="image-display">';
    foreach ($imageArray as $image) {
@@ -166,24 +166,23 @@ function uploadFile($name) {
   // Processes images by getting paths and 
 // creating smaller versions of the image
 function processImage($dir, $filename) {
- // Set up the variables
- $dir = $dir . '/';
+   // Set up the variables
+   $dir = $dir . '/';
+  
+   // Set up the image path
+   $image_path = $dir . $filename;
+  
+   // Set up the thumbnail image path
+   $image_path_tn = $dir.makeThumbnailName($filename);
+  
+   // Create a thumbnail image that's a maximum of 200 pixels square
+   resizeImage($image_path, $image_path_tn, 200, 200);
+  
+   // Resize original to a maximum of 500 pixels square
+   resizeImage($image_path, $image_path, 500, 500);
+  }
 
- // Set up the image path
- $image_path = $dir . $filename;
-
- // Set up the thumbnail image path
- $image_path_tn = $dir.makeThumbnailName($filename);
-
- // Create a thumbnail image that's a maximum of 200 pixels square
- resizeImage($image_path, $image_path_tn, 200, 200);
-
- // Resize original to a maximum of 500 pixels square
- resizeImage($image_path, $image_path, 500, 500);
-}
-
-
-// Checks and Resizes image
+  // Checks and Resizes image
 function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) {
      
    // Get image type
@@ -256,5 +255,10 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
     }
     // Free any memory associated with the old image
     imagedestroy($old_image);
-  } // ends resizeImage function
-  ?>
+    // ends resizeImage function
+
+  } 
+  
+  
+
+?>

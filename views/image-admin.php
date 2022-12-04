@@ -18,7 +18,6 @@ if (isset($_SESSION['message'])) {
 
   <body>
 
-
   <div class="content">
     <header>
       <?php require $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/commons/header.php';
