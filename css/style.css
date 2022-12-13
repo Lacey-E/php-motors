@@ -155,6 +155,10 @@ width: 100%;
    border: 5px solid #4697d7;
    border-radius: 1%;
  }
+
+ .small-page{
+  width: 1000px;
+ }
  
  body{
   background-image:url(checkerboard.jpg);

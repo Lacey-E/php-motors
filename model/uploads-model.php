@@ -11,6 +11,7 @@ function storeImages($imgPath, $invId, $imgName, $imgPrimary) {
     $stmt->bindValue(':imgName', $imgName, PDO::PARAM_STR);
     $stmt->bindValue(':imgPrimary', $imgPrimary, PDO::PARAM_INT);
     $stmt->execute();
+
         
     // Make and store the thumbnail image information
     // Change name in path

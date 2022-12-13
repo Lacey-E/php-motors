@@ -44,19 +44,20 @@ if (isset($_SESSION['message'])) {
   echo $message;
  } ?>
 
-<form action="/phpmotors/uploads/" method="post" enctype="multipart/form-data">
- <label for="invItem">Vehicle</label>
+<div class="small-page">
+<form  action="/phpmotors/uploads/" method="post" enctype="multipart/form-data">
+ <label for="invItem" class="top">Vehicle</label>
 	<?php echo $prodSelect; ?>
 	<fieldset>
-		<label>Is this the main image for the vehicle?</label>
-		<label for="priYes" class="pImage">Yes</label>
-		<input type="radio" name="imgPrimary" id="priYes" class="pImage" value="1">
-		<label for="priNo" class="pImage">No</label>
-		<input type="radio" name="imgPrimary" id="priNo" class="pImage" checked value="0">
+		<label class="top">Is this the main image for the vehicle?</label>
+		<label for="priYes" class="pImage sub">Yes</label>
+		<input type="radio" name="imgPrimary" id="priYes" class="pImage sub" value="1">
+		<label for="priNo" class="pImage sub">No</label>
+		<input type="radio" name="imgPrimary" id="priNo" class="pImage  top" checked value="0">
 	</fieldset>
- <label>Upload Image:</label>
- <input type="file" name="file1">
- <input type="submit" class="regbtn" value="Upload">
+ <label >Upload Image:</label>
+ <input type="file" class="submitBtn" name="file1">
+ <input type="submit" class="regbtn submitBtn" value="Upload">
  <input type="hidden" name="action" value="upload">
 </form>
 
@@ -68,6 +69,8 @@ if (isset($_SESSION['message'])) {
  if (isset($imageDisplay)) {
   echo $imageDisplay;
  } ?>
+
+</div>
     </main>
 
     <hr>
