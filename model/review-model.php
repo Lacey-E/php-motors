@@ -1,16 +1,15 @@
 <?php
 
-function reviewPush($revDescription, $displayName, $invId, $clientId){
+function reviewPush($reviewText, $invId, $clientId){
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
  // The SQL statement
- $sql = 'INSERT INTO review (revDescription, displayName, invId, clientId)
-     VALUES (:revDescription, :displayName, :invId, :clientId)';
+ $sql = 'INSERT INTO review (reviewText, invId, clientId)
+     VALUES (:reviewText, :invId, :clientId)';
  // Create the prepared statement using the phpmotors connection
  $stmt = $db->prepare($sql);
  // and tells the database the type of data it is
- $stmt->bindValue(':description', $revDescription, PDO::PARAM_STR);
- $stmt->bindValue(':displayName', $displayName, PDO::PARAM_STR);
+ $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
  $stmt->bindValue(':invId', $invId, PDO::PARAM_STR);
  $stmt->bindValue(':clientId', $clientId, PDO::PARAM_STR);
 
@@ -36,5 +35,19 @@ function getReviewInfo($reviewId){
     $stmt->closeCursor();
     return $reviewInfo;
    }
+
+
+   //Delete Review
+   function deleteReview($reviewId) {
+    $db = phpmotorsConnect();
+    $sql = 'DELETE FROM review WHERE reviewId = :reviewId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+   }
+
 
 ?>

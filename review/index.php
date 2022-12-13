@@ -63,40 +63,38 @@ switch ($action) {
     break;
 
 
-  case 'regVehicle';
+  case 'addReview';
     // FILTER and store the data
-    $revDescription = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
-    $displayName = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $reviewText = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $invId = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $clientId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
     // Check For Misssing Data
 
     if (
-      empty($description) || empty($displayName) || empty($invId) || empty($invImage) || empty($clientId) 
+      empty($reviewText) || empty($invId) || empty($clientId)
     ) {
       $message = '<p class="center"> Please Provide information on all empty field. </p>';
-      include '../views/add-vehicle.php';
+      include '../views/add-review.php';
       exit;
     }
 
     //  Send The Data To The Model If No ERRors Exist
 
-    $vehOutcome = reviewPush(
-      $revDescription,
-      $displayName,
+    $reviewOutcome = reviewPush(
+      $reviewText,
       $invId,
       $clientId
     );
 
 
-    if ($vehOutcome) {
-      $message = "<p> Car Registration Sucessful </p>";
-      include '../views/add-vehicle.php';
+    if ($reviewOutcome) {
+      $message = "<p> Review submitted Sucessful </p>";
+      include '../views/add-review.php';
       exit;
     } else {
-      $message =  "<p> Sorry, The registration failed, please try again </p>";
-      include '../views/registration.php';
+      $message =  "<p> Sorry,review submission failed, please try again </p>";
+      include '../views/add-review.php';
       exit;
     }
 
@@ -104,9 +102,9 @@ switch ($action) {
 
 
 
-  case 'getInventoryItems':
+  case 'getReviewItems':
     // Get the classificationId 
-    $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+    $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
     // Fetch the vehicles by classificationId from the DB 
     $inventoryArray = getInventoryByClassification($classificationId);
     // Convert the array to a JSON object and send it back 
@@ -125,20 +123,12 @@ switch ($action) {
 
   case 'updateVehicle':
     $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
-    $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
     $invColor = filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
     if (
       empty($classificationId) || empty($invMake) || empty($invModel)
-      || empty($invDescription) || empty($invImage) || empty($invThumbnail)
-      || empty($invPrice) || empty($invStock) || empty($invColor)
+     
     ) {
       $message = '<p>Please complete all information for the item! Double check the classification of the item.</p>';
       include '../view/vehicle-update.php';
@@ -159,47 +149,38 @@ switch ($action) {
     break;
 
   case 'del':
-    $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
-    $invInfo = getInvItemInfo($invId);
+    $reviewId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+    $reviewInfo = getReviewInfo($reviewId);
     if (count($invInfo) < 1) {
       $message = 'Sorry, no vehicle information could be found.';
     }
-    include '../views/vehicle-delete.php';
+    include '../views/review-delete.php';
     exit;
     break;
 
-  case 'deleteVehicle':
-    $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+  case 'deleteReview':
+    $reviewId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    $reviewText = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    
 
-    $deleteResult = deleteVehicle($invId);
+    $deleteResult = deleteReview($reviewId);
     if ($deleteResult) {
-      $message = "<p class='notice'>Congratulations the, $invMake $invModel was	successfully deleted.</p>";
+      $message = "<p class='notice'>Congratulations review was	successfully deleted.</p>";
       $_SESSION['message'] = $message;
-      header('location: /phpmotors/vehicles/');
+      header('location: /phpmotors/review/');
       exit;
     } else {
-      $message = "<p class='notice'>Error: $invMake $invModel was not
+      $message = "<p class='notice'>Error: review was not
           deleted.</p>";
       $_SESSION['message'] = $message;
-      header('location: /phpmotors/vehicles/');
+      header('location: /phpmotors/review/');
       exit;
     }
-    break;
-  case 'classification':
-    $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $vehicles = getVehiclesByClassification($classificationName);
-    if (!count($vehicles)) {
-      $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
-    } else {
-      $vehicleDisplay = buildVehiclesDisplay($vehicles);
-    }
-    include '../views/classification.php';
     break;
 
     case 'delivervehicleDetail':
-      $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+      $reviewId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
       
       // Get single vehicle
       $vehicle = getInvItemInfo($invId);
