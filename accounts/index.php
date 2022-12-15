@@ -13,6 +13,9 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php ';
 // Get the functions library
 require_once '../library/functions.php';
+// Get the functions library
+require_once '../model/review-model.php';
+
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -115,11 +118,13 @@ switch ($action) {
     $_SESSION['clientData'] = $clientData;
 
     // Send them to the admin view
-    include '/xampp/htdocs/phpmotors/views/admin.php';
+    include '/xampp/htdocs/phpmotors/views/home.php';
     exit;
 
 
+
   case 'admin':
+
     include '/xampp/htdocs/phpmotors/views/admin.php';
     break;
 
@@ -163,17 +168,17 @@ switch ($action) {
     $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
     $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
     $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
-   
-if ($clientEmail != $_SESSION['clientData']['clientEmail']){
-  $clientEmail = checkEmail($clientEmail);
-}
 
-$existingEmail = checkExistingEmail($clientEmail);
-if ($existingEmail){
-  $_SESSION['message'] = '<p> That email already exist, Please choose another. </p>';
-  include '../views/client-update.php';
-  exit;
-}
+    if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
+      $clientEmail = checkEmail($clientEmail);
+    }
+
+    $existingEmail = checkExistingEmail($clientEmail);
+    if ($existingEmail) {
+      $_SESSION['message'] = '<p> That email already exist, Please choose another. </p>';
+      include '../views/client-update.php';
+      exit;
+    }
 
     if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
       $_SESSION['message'] = '<p class="center"> Please Provide information on all empty field. </p>';
@@ -187,7 +192,7 @@ if ($existingEmail){
       $_SESSION['message'] = "<p> $clientFirstname, Your infomation was Updated. </p>";
       header('Location: /phpmotors/accounts/');
       exit;
-    }else{
+    } else {
       $_SESSION['message'] = "<p> Sorry, your account was not updated. </p>";
       include '../views/admin.php';
       exit;
@@ -204,5 +209,11 @@ if ($existingEmail){
 
 
   default:
+    $reviews = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    if (!count($reviews)) {
+      $displayReviews = "<p class='notice'>You have not reviwed any products</p>";
+    } else {
+      $displayReviews = buildDisplayReviewsForAdminClient($reviews);
+    }
     include '/xampp/htdocs/phpmotors/views/admin.php';
 }

@@ -92,7 +92,6 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
 
             </form>
 
-
         </main>
 
         <hr>

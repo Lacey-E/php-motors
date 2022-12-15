@@ -12,8 +12,11 @@ require_once '../model/vehicles-model.php';
 require_once '../model/main-model.php';
 // Get the functions library
 require_once '../library/functions.php';
-
+// Get the review 
+require_once '../model/review-model.php';
 // Get the array of classifications
+
+
 $classifications = getClassifications();
 
 $navList = nav($classifications);
@@ -211,20 +214,42 @@ switch ($action) {
     include '../views/classification.php';
     break;
 
+    // case 'getVehicleReview':
+    //   $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+    //   $reviews = getReviewById($invId);
+    //   if (!count($reviews)) {
+    //     $message = "<p class='notice'>Be the first to leave a Review</p>";
+    //   } else {
+    //     $reviewDisplay = buildReviewDisplay($reviews);
+    //   }
+    //   include '../views/vehicle-detail.php';
+
+
+    //   break;
+
     case 'delivervehicleDetail':
       $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
       
+      $reviews = getReviewById($invId);
+      if (!count($reviews)) {
+        $reviewDisplay = "<p class='notice'>No Review Yet, Be the first to leave a Review</p>";
+      } else {
+        $reviewDisplay = buildReviewDisplay($reviews);
+      }
       // Get single vehicle
       $vehicle = getInvItemInfo($invId);
+      //GET SINGLE Review
+      $reviewInfo = getReviewInfo($invId);
   
-      if (empty($vehicle)) {
+      if (empty($vehicle )) {
         $_SESSION['message'] = $message;
         $message = "<p class='notice'>Sorry, Item could be found.</p>";
-       
-       
-      } else {
+      
+      } 
+      
+      else {
         $page_title = $vehicle['invMake'] . ' ' . $vehicle['invModel']; 
-        $vehicleDisplay = buildSingleVehicleDisplay($vehicle);
+        $vehicleDisplay = buildSingleVehicleDisplay($vehicle, $reviewInfo);
       }
     
       include '../views/vehicle-detail.php';

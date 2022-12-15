@@ -50,4 +50,39 @@ function getReviewInfo($reviewId){
    }
 
 
+// Update a vehicle
+function updateReview($reviewId, $reviewText) {
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE review SET reviewText = :reviewText WHERE reviewId = :reviewId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
+    $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+  };
+
+
+   function getReviewsByClientId($clientId){
+    $db = phpmotorsConnect();
+        $sql = 'SELECT * FROM review JOIN clients ON review.clientId  =  clients.clientId WHERE review.clientId = :clientId ORDER BY reviewDate DESC';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+        $stmt->execute();
+        $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $reviews;
+}
+
+function getReviewById($invId){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM review JOIN clients ON review.clientId  =  clients.clientId WHERE invId = :invId ORDER BY reviewDate DESC';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_STR);
+    $stmt->execute();
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $reviews;
+   }
 ?>

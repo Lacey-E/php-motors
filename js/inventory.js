@@ -22,6 +22,11 @@
   }) 
  })
 
+
+
+
+
+
  // Build inventory items into HTML table components and inject into DOM 
 function buildInventoryList(data) { 
     let inventoryDisplay = document.getElementById("inventoryDisplay"); 
@@ -41,4 +46,25 @@ function buildInventoryList(data) {
     dataTable += '</tbody>'; 
     // Display the contents in the Vehicle Management view 
     inventoryDisplay.innerHTML = dataTable; 
+   }
+
+    // Build inventory items into HTML table components and inject into DOM 
+function buildReviewList(data) { 
+    let reviewDisplay = document.getElementById("reviewDisplay"); 
+    // Set up the table labels 
+    let dataTable = '<thead>'; 
+    dataTable += '<tr><th>Reviews</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
+    dataTable += '</thead>'; 
+    // Set up the table body 
+    dataTable += '<tbody>'; 
+    // Iterate over all vehicles in the array and put each in a row 
+    data.forEach(function (element) { 
+     console.log(element.reviewId + ", " + element.reviewText); 
+     dataTable += `<tr><td>${element.reviewText} ${element.reviewDate}</td>`; 
+     dataTable += `<td><a href='/phpmotors/vehicles?action=mod&reviewId=${element.reviewId}' title='Click to modify'>Modify</a></td>`; 
+     dataTable += `<td><a href='/phpmotors/vehicles?action=del&reviewId=${element.reviewId}' title='Click to delete'>Delete</a></td></tr>`; 
+    }) 
+    dataTable += '</tbody>'; 
+    // Display the contents in the Vehicle Management view 
+    reviewDisplay.innerHTML = dataTable; 
    }

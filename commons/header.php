@@ -7,7 +7,7 @@
 
                        
                        <a href="/phpmotors/accounts/"> Welcome  
-                            <?php echo $clientFirstname; }}?>
+                            <?php echo $clientFirstname; }}?></a>
 
                       
 

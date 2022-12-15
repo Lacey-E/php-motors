@@ -115,6 +115,8 @@ function getInvItemInfo($invId){
         return $vehicles;
        }
 
+      
+
 // Get information for all vehicles
 function getVehicles(){
 	$db = phpmotorsConnect();
@@ -125,5 +127,3 @@ function getVehicles(){
 	$stmt->closeCursor();
 	return $invInfo;
 }
-
-?>

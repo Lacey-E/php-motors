@@ -156,6 +156,7 @@ width: 100%;
    border-radius: 1%;
  }
 
+
  .small-page{
   width: 1000px;
  }
@@ -185,22 +186,8 @@ font-family: cursive;
 
 
 
-.search-container input[type=text] {
-  padding: 8px;
-  margin-top: 5px;
-  font-size: 16px;
-}
 
-.search-container button {
-
-  padding: 6px;
-  margin-top: 5px;
-  background: #4697d7;
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.search-container button:hover {
+ button:hover {
   background: blue;
 }
 

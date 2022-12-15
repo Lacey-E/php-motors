@@ -1,7 +1,7 @@
 <?php
 // If the user is not logged in redirect to the login page...
 if (!$_SESSION['loggedin']) {
-    header('Location: /phpmotors/');
+    header('Location: /phpmotors/accounts');
 } ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,9 +39,9 @@ if (!$_SESSION['loggedin']) {
         </div>
         <main>
             <?php
-           if (isset($_SESSION['message'])) {
-            $message = $_SESSION['message'];
-           }
+            if (isset($_SESSION['message'])) {
+                $message = $_SESSION['message'];
+            }
             ?>
             <?php
             if (isset($message)) {
@@ -81,9 +81,11 @@ if (!$_SESSION['loggedin']) {
                 <li><a href="/phpmotors/accounts/?action=updateAccount">
                         Update Account</a></li>
             </ul>
+           
 
-
-
+            <?php
+            echo $displayReviews;
+            ?>
         </main>
         <hr>
 

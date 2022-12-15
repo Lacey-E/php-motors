@@ -46,33 +46,20 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
             }
             ?>
 
-            <h1><?php if (isset($_SESSION['clientData'])) {
-                    $clientFirstname = $_SESSION['clientData']['clientFirstname'];
-                    $clientLastname = $_SESSION['clientData']['clientLastname'];
-                } ?> </h1>
-            <?php
-            $clientId = $_SESSION['clientData']['clientId'];
-            ?>
-
-
-<?php
-$shortName = substr($clientFirstname,0,1);
-$newName = $shortName.$clientLastname
-?>
-            <h1>Add Vehicle</h1>
+            
+            <h1>Add Review</h1>
             <form method="POST" action="/phpmotors/review/index.php">
-                <label class="top">Name<input type="text"  <?php echo "value='$newName'"; ?> name="displayName"></label>
-
-                <label class="top">Review<input type="text" name="revDescription" required></label>
+            
                 
 
                             
                 
 
-                <button class="submitBtn">Add Review</button>
+                <input type="hidden" name="invId" <?php  "value='$invId'"; ?>>
+                <input type="hidden" name="clientId" <?php  "value='$clientId'"; ?>>
+               
                 <!-- Add the action name - value pair -->
-                <input type="hidden" name="action" value="regReview">
-
+                <input type="hidden" name="action" value="addReview">
             </form>
 
 
